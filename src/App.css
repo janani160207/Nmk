@@ -240,3 +240,11 @@ padding:30px;
 text-align:center;
 margin-top:50px;
 }
+.navbar ul li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar ul li:hover {
+  color: #60a5fa;
+}

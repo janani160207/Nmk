@@ -79,11 +79,19 @@ function App() {
 
   const saveJob = (job) => {
 
-    if (!savedJobs.find(item => item.id === job.id)) {
-      setSavedJobs([...savedJobs, job]);
-    }
+  if (!savedJobs.find(item => item.id === job.id)) {
 
-  };
+    setSavedJobs([...savedJobs, job]);
+
+    alert("Job Saved Successfully!");
+
+  } else {
+
+    alert("Already Saved!");
+
+  }
+
+};
 
   const recommendedJobs = jobs.filter(job =>
     job.skills.includes("React")
@@ -98,10 +106,46 @@ function App() {
        <h1>HireHub AI</h1>
 
         <ul>
-<li> Home</li>
-<li> Jobs</li>
-<li> AI Tools</li>
-<li> Saved</li>
+  <li
+    onClick={() =>
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    }
+  >
+    Home
+  </li>
+
+  <li
+    onClick={() =>
+      document
+        .getElementById("jobs")
+        .scrollIntoView({ behavior: "smooth" })
+    }
+  >
+    Jobs
+  </li>
+
+  <li
+    onClick={() =>
+      document
+        .getElementById("tools")
+        .scrollIntoView({ behavior: "smooth" })
+    }
+  >
+    AI Tools
+  </li>
+
+  <li
+    onClick={() =>
+      document
+        .getElementById("saved")
+        .scrollIntoView({ behavior: "smooth" })
+    }
+  >
+    Saved
+  </li>
 </ul>
 
       </nav>
@@ -183,8 +227,8 @@ skill-gap analysis, and career guidance powered by AI.
         </div>
 
       </section>
-      <h2 className="heading">
- AI Career Insights
+      <h2 id="tools" className="heading">
+AI Career Insights
 </h2>
 
 <div className="dashboard">
@@ -260,10 +304,12 @@ skill-gap analysis, and career guidance powered by AI.
               </button>
 
               <button
-                onClick={() => saveJob(job)}
-              >
-                Bookmark
-              </button>
+onClick={() => saveJob(job)}
+>
+{savedJobs.find(item => item.id === job.id)
+ ? "✓ Saved"
+ : "Bookmark"}
+</button>
               <button
                 onClick={() =>
 alert("Application Submitted Successfully!")
@@ -367,7 +413,9 @@ AI-powered career suggestions.
 
 </div>
 
- <h2 className="heading">Saved Jobs</h2>
+ <h2 id="saved" className="heading">
+Saved Jobs
+</h2>
 
       <div className="saved-section">
 
